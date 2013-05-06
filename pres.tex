@@ -12,8 +12,9 @@
 \usepackage{times}
 \usepackage[T1]{fontenc}
 \usepackage{graphicx}
+\usepackage{verbatim}
 
-title[Compilateur et débogueur] % (optional, use only with long paper titles)
+\title[Compilateur et débogueur] % (optional, use only with long paper titles)
 {Compilateur et débogueur}
 
 \author[Claude Stolze, Pierre Donat-Bouillud, Maël Lansade]{Claude Stolze , Pierre Donat-Bouillud \and Maël Lansade}
@@ -31,6 +32,35 @@ title[Compilateur et débogueur] % (optional, use only with long paper titles)
 
 \section{Compilateur}
 \subsection{Présentation}
+\begin{frame}[fragile]
+\begin{verbatim}
+.BSS // ou .DATA
+	label1 : 4		// taille du bloc de données.
+	label2 : 1+1
+
+.CODE
+	label3 : add r0 r0 r0
+\end{verbatim}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Expressions arithmétiques}
+Opérations autorisées~: addition, soustraction, multiplication, division, modulo, exposant.
+\begin{verbatim}
+.BSS
+label1 : label2 // illégal
+label2 : (1+1)*2^(4/2) % 3
+
+.CODE
+	jmp label1 // légal
+\end{verbatim}
+\end{frame}
+
+\subsection{Structure du programme}
+\begin{frame}
+
+
+\end{frame}
 
 \section{Simulateur}
 \subsection{Présentation}
