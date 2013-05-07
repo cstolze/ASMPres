@@ -103,6 +103,80 @@ L'unité de contrôle lit une instruction, la décode, et l'exécute (et peut re
 \end{frame}
 
 \section{Débogueur}
-\subsection{Présentation}
+
+\subsection{Commandes}
+
+\begin{frame}
+	\frametitle{La référence : gdb}
+	GDB : GNU debugger
+	Etudes des commandes de gdb pour mettre au point les commandes.
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Commandes}
+	
+	\begin{block}{Types de commande}
+		\begin{itemize}
+		\item points d'arrêt
+		\item affichage de données internes (ou modifications)
+		\item persistance de l'état du simulateur
+		\item exécution du programme
+		\item pile
+		\item commandes internes
+		\item chronomètre
+		\end{itemize}
+	\end{block}
+	
+	\begin{block}{Syntaxe}
+		\verb| commande options |
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Points d'arrêt}
+	\begin{block}{Syntaxe}
+		\begin{itemize}
+		\item \verb|breakpoint line n|
+		\item \verb|breakpoint address addr [offset]|
+		\item \verb|breakpoint label lab|
+		\item \verb|breakpoint port pt [mode] [val]|
+		\item \verb|breakpoint instr i|
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Affichage/modifications d'informations sur le simulateur}
+	\begin{block}{Syntaxe}
+		\begin{itemize}
+		\item \verb|display register [reg]|
+		\item \verb|display address add [offset] |
+		\item \verb|dump address add offset fileName|
+		\item \verb|find seq|
+		\item \verb|find-next|
+		\item \verb|print texte|
+		\item \verb|write register reg val|
+		\item \verb|write address addr [offset] val|
+		\item \verb|write port [in/out] p val|
+		\end{itemize}
+	\end{block}
+\end{frame}
+	
+
+\subsection{Fonctionnement}
+
+\begin{frame}
+	\frametitle{Architecture}
+\end{frame}
+
+\begin{frame}
+	\frametitle{Analyse des commandes}
+	
+\end{frame}
+
+\begin{frame}
+	\frametitle{Gestion des erreurs}
+\end{frame}
 
 \end{document}
