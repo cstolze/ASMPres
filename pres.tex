@@ -61,7 +61,7 @@ label2 : (1+1)*2^(4/2) % 3
 \frametitle{Grammaire}
 Le langage accepté par le programme est défini par une grammaire hors contexte.
 Par exemple, on a la règle suivante :
-\[ S \rightarrow .BSS \\n lignesdonnees S | .CODE \\n lignescodes S | \epsilon \]
+\[ S \rightarrow .BSS\ \backslash n\ lignesdonnees\ S\ |\ .CODE\ \backslash n\ lignescodes\ S\ |\ \epsilon \]
 \end{frame}
 
 \begin{frame}
@@ -80,6 +80,7 @@ Structures utilisées dans le programme~:
 \item arbres pour représenter les expressions arithmétiques~;
 \item table de hachage pour associer des valeurs aux symboles~;
 \item liste d'instruction.
+\end{itemize}
 \end{frame}
 
 \section{Simulateur}
@@ -91,7 +92,14 @@ Le simulateur prend en entrée un code binaire, et l'exécute.
 \subsection{Fonctionnement}
 \begin{frame}
 \frametitle{Mémoire}
+	Il y a deux mémoires : pour le programme et pour les données.
+	
+	La mémoire de programme est initialisée à la lecture du fichier d'entrée.
+\end{frame}
 
+\begin{frame}
+\frametitle{Unité de contrôle}
+L'unité de contrôle lit une instruction, la décode, et l'exécute (et peut recommencer \emph{ad lib}).
 \end{frame}
 
 \section{Débogueur}
