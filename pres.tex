@@ -26,8 +26,24 @@
   \titlepage
 \end{frame}
 
-\begin{frame}{Plan}
-  \tableofcontents
+%\begin{frame}{Plan}
+%  \tableofcontents
+%\end{frame}
+
+\section{Introduction}
+
+\begin{frame}
+	\frametitle{Suite logiciel pour la programmation en langage d'assemblage}
+	\begin{itemize}
+	\item codé en C++ (ou en C+ $\dots$)
+	\item git et github
+	\item trois sous-modules :
+		\begin{itemize}
+		\item assembleur
+		\item simulateur
+		\item debugger
+		\end{itemize}
+	\end{itemize}
 \end{frame}
 
 \section{Compilateur}
@@ -144,6 +160,12 @@ L'unité de contrôle lit une instruction, la décode, et l'exécute (et peut re
 		\item \verb|breakpoint instr i|
 		\end{itemize}
 	\end{block}
+	
+	\begin{block}{Symboles}
+		Faire un breakpoint sur un label $\longrightarrow$ charger les symboles.
+		
+		\verb|symbol file|
+	\end{block}
 \end{frame}
 
 \begin{frame}[fragile]
@@ -163,11 +185,81 @@ L'unité de contrôle lit une instruction, la décode, et l'exécute (et peut re
 	\end{block}
 \end{frame}
 	
+\begin{frame}[fragile]
+	\frametitle{Persistance de l'état du simulateur}
+	\begin{block}{Syntaxe}
+		\begin{itemize}
+		\item \verb| record file|
+		\item \verb| restore file |
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Exécution du programme}
+	\begin{block}{Syntaxe}
+		\begin{itemize}
+		\item \verb|run |
+		\item \verb|next |
+		\item \verb|continue |
+		\item \verb|step n|
+		\item \verb|exit | ou \verb|Ctrl+d|
+		\item \verb|until |
+		\end{itemize}
+	\end{block}
+\end{frame}
 
 \subsection{Fonctionnement}
 
-\begin{frame}
+\begin{frame}[fragile]
 	\frametitle{Architecture}
+	Associer un simulateur au debugger :
+
+		\begin{itemize}
+	\item \verb|Debugger::attach(CPU* cpu)|
+	\item \verb|Debugger::debug()|
+	\end{itemize}
+	
+	\begin{block}{Simulateur seulement:}
+		\begin{verbatim}
+			
+    control_unit->read_inst();
+    control_unit->decode_inst();
+    control_unit->execute_inst();	
+		\end{verbatim}
+	\end{block}
+
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Architecture}
+	Associer un simulateur au debugger :
+	\begin{block}{Interaction avec le simulateur :}
+	\begin{verbatim}
+        bool cont = true;
+        while (sim->getBus_inst() != -1 && cont)
+        {
+            sim->run();
+            cont = interact();
+            
+        }
+        interf.answer("Fin de l'exécution.");
+        
+        return cont;
+		\end{verbatim}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Interface}
+	\verb|commandInterface| virtuelle.
+
+	Plusieurs sorties possibles \footnote{Seule la sortie console est implémentée} :
+	\begin{itemize}
+	\item console
+	\item graphique
+	\item réseau
+	\end{itemize}
 \end{frame}
 
 \begin{frame}
